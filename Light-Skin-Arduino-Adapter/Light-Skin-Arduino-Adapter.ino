@@ -2,10 +2,10 @@
 #define LED_ON LOW
 
 const int LEDs[] = {
-  1, 2, 3
+  49, 47, 45, 43, 41, 39, 37, 35 ,33, 31, 29, 27
 };
 const int Sensors[] = {
-  A0, A1, A2
+  A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11
 };
 
 
