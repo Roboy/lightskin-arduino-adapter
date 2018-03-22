@@ -71,6 +71,7 @@ void loop() {
     
     lastLED = led;
   }
+  digitalWrite(lastLED, LED_OFF);
 
   // Print the measurements to Serial
   Serial.print("Snapshot: ");
@@ -87,5 +88,5 @@ void loop() {
   }
 
   // Wait for the next snapshot to be taken
-  delay(1);
+  delay(100);
 }
