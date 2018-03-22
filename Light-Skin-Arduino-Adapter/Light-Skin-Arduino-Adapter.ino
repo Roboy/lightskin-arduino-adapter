@@ -10,7 +10,7 @@ const int Sensors[] = {
 
 
 // Samples to be measured for each sensor measurement
-const int SAMPLES = 50;
+const int SAMPLES = 10;
 
 
 
@@ -64,7 +64,7 @@ void loop() {
       for(i = 0; i < SAMPLES; i++){
         sum += analogRead(sensor);
       }
-      value = sum / SAMPLES;
+      value = (float) sum / SAMPLES;
 
       allValues[l][s] = value;
     }
@@ -88,5 +88,5 @@ void loop() {
   }
 
   // Wait for the next snapshot to be taken
-  delay(100);
+  delay(500);
 }
