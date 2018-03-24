@@ -10,7 +10,7 @@ const int Sensors[] = {
 
 
 // Samples to be measured for each sensor measurement
-const int SAMPLES = 10;
+const int SAMPLES = 2;
 
 
 
@@ -74,19 +74,21 @@ void loop() {
   digitalWrite(lastLED, LED_OFF);
 
   // Print the measurements to Serial
-  Serial.print("Snapshot: ");
-  Serial.print(LEDs_num);
-  Serial.print(',');
-  Serial.print(Sensors_num);
-  Serial.println();
+  //Serial.print("Snapshot: ");
+  //Serial.print(LEDs_num);
+  //Serial.print(',');
+  //Serial.print(Sensors_num);
+  //Serial.println();
   for(l = 0; l < LEDs_num; l++){
     for(s = 0; s < Sensors_num; s++){
       Serial.print(allValues[l][s]);
       Serial.print(',');
     }
-    Serial.println();
+    Serial.print(',');
+    //Serial.println();
   }
+  Serial.println();
 
   // Wait for the next snapshot to be taken
-  delay(500);
+  //delay(100);
 }
