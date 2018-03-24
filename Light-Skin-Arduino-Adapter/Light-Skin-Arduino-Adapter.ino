@@ -15,7 +15,7 @@ const int Sensors[] = {
 
 
 // Samples to be measured for each sensor measurement
-const int SAMPLES = 5;
+const int SAMPLES = 10;
 
 
 
@@ -57,18 +57,20 @@ void loop() {
   long t0, t;
   t0 = micros();
 
-  // Take a "snapshot": measure all the LED / Sensor combinations
-  
-  /*for(l = 0; l < LEDs_num; l++){
-    int led = LEDs[l];
 
+  int led, sensor;
+  // Take a "snapshot": measure all the LED / Sensor combinations
+
+  for(l = 0; l < LEDs_num; l++){
+    led = LEDs[l];
+    
     // switch to new LED
     digitalWrite(lastLED, LED_OFF);
     digitalWrite(led, LED_ON);
     
     // Measure all sensors
     for(s = 0; s < Sensors_num; s++){
-      int sensor = Sensors[s];
+      sensor = Sensors[s];
       // Read sensor once to switch ADC circuit to this pin (discard result)
       analogRead(sensor);
 
@@ -86,11 +88,11 @@ void loop() {
   digitalWrite(lastLED, LED_OFF);
   /* */
 
-  
-  int led;
+
+  /*
   // Measure all sensors
   for(s = 0; s < Sensors_num; s++){
-    int sensor = Sensors[s];
+    sensor = Sensors[s];
     // Read sensor once to switch ADC circuit to this pin (discard result)
     analogRead(sensor);
 
