@@ -42,6 +42,9 @@ void setup() {
   }
   
   Serial.begin(2000000);
+  while (!Serial) {
+    ; // wait for serial port to connect. Needed for native USB
+  }
 }
 
 
@@ -52,6 +55,11 @@ int lastLED = LEDs[0];
 long sum;
 float value;
 int l, s, i; // Inner loop variables; so they don't need to be reallocated every time
+
+
+//char buf[15]; // faster printing
+//char out[500];
+const char* comma = ",";
 
 void loop() {
   long t0, t;
@@ -122,24 +130,33 @@ void loop() {
 
   
   // Print the measurements to Serial
-  //Serial.print("Snapshot: ");
-  //Serial.print(LEDs_num);
-  //Serial.print(',');
-  //Serial.print(Sensors_num);
-  //Serial.println();
+  Serial.print("Snapshot: ");
+  Serial.print(LEDs_num);
+  Serial.print(',');
+  Serial.print(Sensors_num);
+  Serial.println();
+
+  //out[0] = 0;
+  //out.reserve(500);
   for(l = 0; l < LEDs_num; l++){
     for(s = 0; s < Sensors_num; s++){
-      Serial.print(allValues[l][s]);
+      //dtostrf(allValues[l][s], 7, 3, buf);
+      Serial.print(allValues[l][s], 2);
+      //out += 'o';
+      //strcat(out, "o");
+      //strcat(out, comma);
       Serial.print(',');
     }
-    Serial.print(',');
-    //Serial.println();
+    Serial.println();
+    //buf += '\n';
   }
+  //Serial.print(out);
   Serial.println();
   /* */
+  t = micros();
 
   //Serial.println(t-t0);
 
   // Wait for the next snapshot to be taken
-  //delay(100);
+  delay(1000);
 }
