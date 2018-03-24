@@ -41,7 +41,7 @@ void setup() {
     pinMode(Sensors[i], INPUT);
   }
   
-  Serial.begin(2000000);
+  Serial.begin(1000000);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB
   }
