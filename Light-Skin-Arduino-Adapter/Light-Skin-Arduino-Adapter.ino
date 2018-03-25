@@ -7,10 +7,10 @@
 
 
 const int LEDs[] = {
-  49, 47, 45, 43, 41, 39, 37, 35 ,33, 31, 29, 27
+  27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49
 };
 const int Sensors[] = {
-  A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11
+  A11, A10, A9, A8, A7, A6, A5, A4, A3, A2, A1, A0
 };
 
 
@@ -158,5 +158,5 @@ void loop() {
   //Serial.println(t-t0);
 
   // Wait for the next snapshot to be taken
-  delay(1000);
+  delay(250);
 }
