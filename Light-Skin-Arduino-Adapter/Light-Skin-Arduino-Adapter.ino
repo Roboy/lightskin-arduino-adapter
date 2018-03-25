@@ -50,6 +50,7 @@ void setup() {
 
 
 
+float zeroValues[Sensors_num];
 float allValues[LEDs_num][Sensors_num];
 int lastLED = LEDs[0];
 long sum;
@@ -68,6 +69,21 @@ void loop() {
 
   int led, sensor;
   // Take a "snapshot": measure all the LED / Sensor combinations
+
+  // Measure all sensors for their zero-values while LEDs are off
+  for(s = 0; s < Sensors_num; s++){
+    sensor = Sensors[s];
+    // Read sensor once to switch ADC circuit to this pin (discard result)
+    analogRead(sensor);
+
+    sum = 0;
+    for(i = 0; i < SAMPLES; i++){
+      sum += analogRead(sensor);
+    }
+    value = (float) sum / SAMPLES;
+
+    zeroValues[s] = value;
+  }
 
   for(l = 0; l < LEDs_num; l++){
     led = LEDs[l];
@@ -88,7 +104,7 @@ void loop() {
       }
       value = (float) sum / SAMPLES;
 
-      allValues[l][s] = value;
+      allValues[l][s] = max(0, value - zeroValues[s]);
     }
     
     lastLED = led;
@@ -130,11 +146,13 @@ void loop() {
 
   
   // Print the measurements to Serial
+  
   Serial.print("Snapshot: ");
   Serial.print(LEDs_num);
   Serial.print(',');
   Serial.print(Sensors_num);
   Serial.println();
+  /* */
 
   //out[0] = 0;
   //out.reserve(500);
