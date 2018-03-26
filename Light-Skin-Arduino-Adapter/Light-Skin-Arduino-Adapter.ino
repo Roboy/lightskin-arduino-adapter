@@ -33,6 +33,9 @@ void setup() {
   cbi(ADCSRA, ADPS1);
   cbi(ADCSRA, ADPS0);
 
+  // Increase resolution of ADCs in the relevant value range
+  analogReference(INTERNAL1V1);
+
   for(int i = 0; i < LEDs_num; i++){
     pinMode(LEDs[i], OUTPUT);
     digitalWrite(LEDs[i], LED_OFF);
@@ -176,5 +179,5 @@ void loop() {
   //Serial.println(t-t0);
 
   // Wait for the next snapshot to be taken
-  delay(250);
+  delay(1000);
 }
