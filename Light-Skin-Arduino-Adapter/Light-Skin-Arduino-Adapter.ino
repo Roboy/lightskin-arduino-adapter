@@ -15,7 +15,7 @@ const int Sensors[] = {
 
 
 // Samples to be measured for each sensor measurement
-const int SAMPLES = 10;
+const int SAMPLES = 20;
 
 
 
@@ -179,5 +179,5 @@ void loop() {
   //Serial.println(t-t0);
 
   // Wait for the next snapshot to be taken
-  delay(1000);
+  delay(250);
 }
